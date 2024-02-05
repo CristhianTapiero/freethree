@@ -1,4 +1,5 @@
 import './globals.css'
+import { Providers } from './providers'
 
 export default function RootLayout({
   children,
@@ -29,7 +30,9 @@ export default function RootLayout({
 		<title>FreeThree - Connect the world with you</title>
       </head>
       <body className='w-screen h-screen bg-brand-black text-brand-white'>
-        {children}
+		<Providers>
+        	{children}
+		</Providers>
       </body>
     </html>
   )

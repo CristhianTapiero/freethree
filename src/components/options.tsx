@@ -1,11 +1,12 @@
+"use client"
 import { FacebookIcon, GoogleIcon, XIcon, XBOXIcon, TwitchIcon, InstagramIcon, LinkedInIcon, PatreonIcon, RedditIcon, TelegramIcon, OFIcon, WhatsAppIcon, ThreadsIcon, YoutubeIcon } from "@/components/icons"
-import { Tag } from "@/components/tag"
 import React from "react"
+import { Menu, MenuButton, MenuList, MenuItem, background } from "@chakra-ui/react"
 
 interface Link {
     name: string,
     url: string,
-    icon?: React.ReactNode
+    icon?: React.ReactElement
 }
 const Links : Link[] = [
     {
@@ -75,15 +76,13 @@ const Links : Link[] = [
 
 export const Options = () =>{
     return (
-        <select name="" id="">
-            {
-                Links.map((link, index) => <option key={index} value={link.url}>
-                    <div>
-                        {link.icon}
-                        <h1>{link.name}</h1>
-                    </div>
-                </option>)
-            }
-        </select>
+        <Menu>
+            <MenuButton as="button" className="btn">Options</MenuButton>
+            <MenuList w={'18rem'} backgroundColor={'#323240'} maxHeight={'10rem'} overflowY={'scroll'} overflowX={'hidden'} border={'none'}>
+                {
+                    Links.map((link, index) => <MenuItem backgroundColor={'#323240'} _hover={{backgroundColor:'#787878'}} gap={'1rem'} key={index} value={link.name}>{link.icon}<span>{link.name}</span></MenuItem>)
+                }
+            </MenuList>
+        </Menu>
     )
 }

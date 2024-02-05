@@ -4,6 +4,7 @@ import { FullPage } from "@/components/container"
 import { AddButton, EditButton, SaveButton } from "@/components/intro_buttons"
 import { useState } from "react"
 import { Options } from "@/components/options"
+import { Tag } from "@/components/tag"
 
 const App = () =>{
     const [isEditing, setIsEditing] = useState(false)
