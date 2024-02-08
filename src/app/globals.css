@@ -5,9 +5,14 @@
 
 @layer components {
     .btn {
-        @apply bg-brand-red hover:bg-brand-red/70 font-semibold transition-colors px-4 py-2 rounded-md text-lg;
+        @apply w-max bg-brand-red hover:bg-brand-red/70 font-semibold transition-colors px-4 py-2 rounded-md text-lg;
     }
-
+    .btn-sub {
+        @apply w-max bg-brand-blue hover:bg-brand-blue/70 font-semibold transition-colors px-4 py-2 rounded-md text-lg;
+    }
+    .form-input {
+        @apply py-2.5 px-2 rounded-xl text-brand-white font-semibold bg-brand-dark-gray;
+    }
 }
 
 * {
@@ -29,4 +34,10 @@
 
 .st2 {
     fill: #FFFFFF;
+}
+
+.menu{
+    scrollbar-width: thin;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-track-color: transparent;
 }

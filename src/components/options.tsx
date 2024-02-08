@@ -1,86 +1,23 @@
 "use client"
-import { FacebookIcon, GoogleIcon, XIcon, XBOXIcon, TwitchIcon, InstagramIcon, LinkedInIcon, PatreonIcon, RedditIcon, TelegramIcon, OFIcon, WhatsAppIcon, ThreadsIcon, YoutubeIcon } from "@/components/icons"
-import React from "react"
-import { Menu, MenuButton, MenuList, MenuItem, background } from "@chakra-ui/react"
+import React, { useState } from "react"
+import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react"
+import { ChevronDownIcon } from "@chakra-ui/icons"
+import { Link, Links } from "@/app/constants"
 
-interface Link {
-    name: string,
-    url: string,
-    icon?: React.ReactElement
-}
-const Links : Link[] = [
-    {
-        name: 'Google',
-        url: 'https://www.google.com',
-        icon: <GoogleIcon />
-    },
-    {
-        name: 'Facebook',
-        url: 'https://www.facebook.com',
-        icon: <FacebookIcon />
-    },
-    {
-        name: 'Twitter',
-        url: 'https://www.twitter.com',
-        icon: <XIcon />
-    },{
-        name: 'Xbox',
-        url: 'https://www.xbox.com',
-        icon: <XBOXIcon />
-    },{
-        name: 'Twitch',
-        url: 'https://www.twitch.com',
-        icon: <TwitchIcon />
-    
-    },{
-        name: 'Instagram',
-        url: 'https://www.instagram.com',
-        icon: <InstagramIcon />
-    },{
-        name: 'LinkedIn',
-        url: 'https://www.linkedin.com',
-        icon: <LinkedInIcon />
-    },{
-        name: 'Patreon',
-        url: 'https://www.patreon.com',
-        icon: <PatreonIcon />
-    },{
-        name: 'Reddit',
-        url: 'https://www.reddit.com',
-        icon: <RedditIcon />
-    
-    },{
-        name: 'Telegram',
-        url: 'https://www.telegram.com',
-        icon: <TelegramIcon />
-    },{
-        name: 'WhatsApp',
-        url: 'https://www.whatsapp.com',
-        icon: <WhatsAppIcon />
-    },{
-        name: 'Threads',
-        url: 'https://www.threads.com',
-        icon: <ThreadsIcon />
-    },{
-        name: 'Youtube',
-        url: 'https://www.youtube.com',
-        icon: <YoutubeIcon />
-    
-    },{
-        name: 'OnlyFans',
-        url: 'https://www.onlyfans.com',
-        icon: <OFIcon />
-    
-    }
-]
+
 
 export const Options = () =>{
+    const [link, setLink] = useState<Link | undefined>(undefined);
+    const handleClick = (link: Link) => {
+        setLink(link);
+    }
+
     return (
         <Menu>
-            <MenuButton as="button" className="btn">Options</MenuButton>
-            <MenuList w={'18rem'} backgroundColor={'#323240'} maxHeight={'10rem'} overflowY={'scroll'} overflowX={'hidden'} border={'none'}>
+            <MenuButton as={Button} leftIcon={link && link.icon} rightIcon={<ChevronDownIcon/>} className="w-max" backgroundColor={'#323240'} color={'#F2EEEB'} _hover={{backgroundColor: "rgba(50, 50, 64, .4)"}} _expanded={{backgroundColor:"rgba(50, 50, 64, .4)"}}>{link ? link.name : "Options"} </MenuButton>
+            <MenuList backgroundColor={'#323240'} maxHeight={'10rem'} overflowY={'auto'} overflowX={'hidden'} border={'none'} className="menu">
                 {
-                    Links.map((link, index) => <MenuItem backgroundColor={'#323240'} _hover={{backgroundColor:'#787878'}} gap={'1rem'} key={index} value={link.name}>{link.icon}<span>{link.name}</span></MenuItem>)
+                    Links.map((link, index) => <MenuItem className="font-semibold" backgroundColor={'#323240'} _hover={{backgroundColor:'#787878'}} gap={'1rem'} key={index} value={link.name} onClick={() => handleClick(link)}>{link.icon}<span>{link.name}</span></MenuItem>)
                 }
             </MenuList>
         </Menu>
